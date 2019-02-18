@@ -4,7 +4,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let ctx = canvas.getContext('2d');
 let background_Color = '#FFF';
-let design_Color = '#AFA';
+let design_Color = 'black';
 let RADIUS = canvas.height / 2 - 32;
 let total = 10;
 let factor = 2;
@@ -53,15 +53,18 @@ function init() {
     for(let i = 0; i < total; i++) {
         ctx.beginPath();
         ctx.moveTo(points[i].x, points[i].y);
-
+        let red = interpolate(i, 0, total, 0, 255);
         let end = (i * factor) % total;
-        ctx.strokeStyle = design_Color;
+        ctx.strokeStyle = getRGB(red, 100, red);
         ctx.lineWidth = 1;
         ctx.lineTo(points[end].x, points[end].y);
         ctx.stroke();
     }
 }
 
+function getRGB(r,g,b) {
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
 function interpolate(value, min1, max1, min2, max2) {
     return min2 + (max2 - min2) * ((value - min1) / (max1 - min1));
 }
@@ -73,7 +76,6 @@ function animate() {
     ctx.fillRect(0, 0, innerWidth, innerHeight);
     if(go) {
         if(total <= 500) total++;
-        else go = false;
     }
     init();
 }
