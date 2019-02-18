@@ -5,8 +5,8 @@ canvas.height = window.innerHeight;
 let ctx = canvas.getContext('2d');
 let background_Color = '#222';
 let RADIUS = canvas.height / 2 - 32;
-let total = 400;
-let factor = 3;
+let total = 150;
+let factor = 2;
 
 window.addEventListener('resize', function () {
     canvas.height = window.innerHeight - 1;
@@ -33,7 +33,7 @@ function init() {
 
     for (let i = 0; i < total; i++) {
         let angle = interpolate(i, 0, total, 0, Math.PI * 2);
-        let x = RADIUS * Math.cos(angle);
+        let x = RADIUS * Math.cos(angle + Math.PI);
         let y = RADIUS * Math.sin(angle);
         points.push(new Point(x, y));
     }
