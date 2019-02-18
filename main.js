@@ -1,4 +1,4 @@
-/* esversion: 6 */
+/*jshint esversion: 6 */
 let canvas = document.querySelector('canvas');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
