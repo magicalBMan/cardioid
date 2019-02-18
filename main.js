@@ -53,9 +53,10 @@ function init() {
     for(let i = 0; i < total; i++) {
         ctx.beginPath();
         ctx.moveTo(points[i].x, points[i].y);
-        let red = interpolate(i, 0, total, 0, 255);
+        let red = interpolate(i, 0, total / 3, 100, 255);
+        let green = interpolate(i, total / 3, 2 * total / 3, 100, 255)
         let end = (i * factor) % total;
-        ctx.strokeStyle = getRGB(red, 100, red);
+        ctx.strokeStyle = getRGB(green, red, green);
         ctx.lineWidth = 1;
         ctx.lineTo(points[end].x, points[end].y);
         ctx.stroke();
@@ -75,7 +76,7 @@ function animate() {
     ctx.translate(-innerWidth / 2,-innerHeight / 2);
     ctx.fillRect(0, 0, innerWidth, innerHeight);
     if(go) {
-        if(total <= 500) total++;
+        if(total <= 1000) total++;
     }
     init();
 }
